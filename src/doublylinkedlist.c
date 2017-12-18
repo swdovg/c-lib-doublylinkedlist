@@ -63,10 +63,6 @@ void* popHead(DblLinkedList *list) {
     return tmp;
 }
 
-Node* getHead(DblLinkedList *list) {
-
-}
-
 void pushTail(DblLinkedList *list, void *value) {
     Node *tmp = (Node*) malloc(sizeof(Node));
     if (tmp == NULL) {
@@ -106,10 +102,6 @@ void* popTail(DblLinkedList *list) {
 
     list->size--;
     return tmp;
-}
-
-Node* getTail(DblLinkedList *list) {
-
 }
 
 Node* getNth(DblLinkedList *list, size_t index) {
@@ -179,5 +171,52 @@ void* popNth(DblLinkedList *list, size_t index) {
     return tmp;
 }
 
+int isListEmpty(DblLinkedList *list) {
+    if ( (!list->head) && (!list->tail) )
+        return 1;
+    else
+        return 0;
+}
 
+Node* findNode(DblLinkedList *list, void *data) {
+    if (list->head== NULL) {
+        exit(EXIT_FAILURE);
+    }
+
+    Node *tmp = list->head;
+
+    while (tmp) {
+        if (tmp->value==data)
+            return tmp;
+        tmp=tmp->next;
+    }
+
+    return NULL;
+}
+
+DblLinkedList* filter(DblLinkedList *list, int func(Node* elm)) {
+    if (list->head== NULL) {
+        exit(EXIT_FAILURE);
+    }
+
+    DblLinkedList *newList=createDblLinkedList();
+    Node *tmp=list->head;
+
+    while (tmp) {
+        if (func(tmp)>0)
+            pushHead(newList, tmp);
+        tmp=tmp->next;
+    }
+
+    return newList;
+}
+
+void printDblLinkedList(DblLinkedList *list, void (*fun)(void*)) {
+    Node *tmp = list->head;
+    while (tmp) {
+        fun(tmp->value);
+        tmp = tmp->next;
+    }
+    printf("\n");
+}
 

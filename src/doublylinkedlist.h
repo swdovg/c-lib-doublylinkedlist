@@ -21,19 +21,23 @@ void pushHead(DblLinkedList *list, void *data);
 
 void* popHead(DblLinkedList *list);
 
-Node* getHead(DblLinkedList *list);
-
 void pushTail(DblLinkedList *list, void *value);
 
 void* popTail(DblLinkedList *list);
-
-Node* getTail(DblLinkedList *list);
 
 Node* getNth(DblLinkedList *list, size_t index);
 
 void pushNth(DblLinkedList *list, size_t index, void *value);
 
 void* popNth(DblLinkedList *list, size_t index);
+
+int isListEmpty(DblLinkedList *list);
+
+Node* findNode(DblLinkedList *list, void *data);
+
+DblLinkedList* filter(DblLinkedList *list, int func(Node* elm));
+
+void printDblLinkedList(DblLinkedList *list, void (*fun)(void*));
 
 #endif 
 
