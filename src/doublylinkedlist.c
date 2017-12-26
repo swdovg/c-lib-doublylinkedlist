@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "doublylinkedlist.h"
 
-DblLinkedList* createDblLinkedList() {
+DblLinkedList* createDblLinkedList(enum type_t listtype) {
     DblLinkedList *tmp = (DblLinkedList*) malloc(sizeof(DblLinkedList));
     tmp->size = 0;
     tmp->head = tmp->tail = NULL;
- 
+    tmp->type=listtype;
     return tmp;
 }
 
@@ -180,17 +181,45 @@ int isListEmpty(DblLinkedList *list) {
 
 Node* findNode(DblLinkedList *list, void *data) {
     if (list->head== NULL) {
+        printf("ok2\n");
         exit(EXIT_FAILURE);
     }
 
     Node *tmp = list->head;
 
-    while (tmp) {
-        if (tmp->value==data)
-            return tmp;
-        tmp=tmp->next;
-    }
+    switch (list->type) {
 
+        case INT:
+            while (tmp) {
+                if (*((int*)tmp->value)==*((int*)data)) {
+                    return tmp;
+                }
+                tmp=tmp->next;
+            }
+            break;
+
+        case DOUBLE:
+
+            while (tmp) {
+                if ( fabs( *((double*)tmp->value) - *((double*)data) ) < 0.00001  ) {
+                    return tmp;
+                }
+                tmp=tmp->next;
+            }
+            break;
+
+        case CHAR:
+            while (tmp) {
+                if (*((char*)tmp->value)==*((char*)data)) {
+                    return tmp;
+                }
+                tmp=tmp->next;
+            }
+            break;
+
+        default:
+            return NULL;
+    }
     return NULL;
 }
 
@@ -199,7 +228,7 @@ DblLinkedList* filter(DblLinkedList *list, int func(Node* elm)) {
         exit(EXIT_FAILURE);
     }
 
-    DblLinkedList *newList=createDblLinkedList();
+    DblLinkedList *newList=createDblLinkedList(list->type);
     Node *tmp=list->head;
 
     while (tmp) {

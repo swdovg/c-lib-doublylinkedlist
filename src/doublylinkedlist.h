@@ -1,6 +1,12 @@
 #ifndef DOUBLYLINKEDLIST_H
 #define DOUBLYLINKEDLIST_H
 
+enum type_t {
+    INT,
+    DOUBLE,
+    CHAR
+};
+
 typedef struct _Node {
     void *value;
     struct _Node *next;
@@ -11,9 +17,10 @@ typedef struct _DblLinkedList {
     size_t size;
     Node *head;
     Node *tail;
+    enum type_t type;
 } DblLinkedList;
 
-DblLinkedList* createDblLinkedList(); 
+DblLinkedList* createDblLinkedList(enum type_t listtype);
 
 void deleteDblLinkedList(DblLinkedList **list);
 
