@@ -15,6 +15,8 @@ void printChar(void *value) {
     printf("%c ", *((char*) value));
 }
 
+
+
 int main() {
     DblLinkedList *intlist = createDblLinkedList(INT);
     DblLinkedList *doublelist = createDblLinkedList(DOUBLE);
@@ -60,6 +62,8 @@ int main() {
     pushTail(intlist, &ie);
     pushTail(intlist, &ik);
     printDblLinkedList(intlist, printInt);
+    printf("reverse: ");
+    printDblLinkedList(reverse(intlist), printInt);
     printf("length: %d\n", intlist->size);
     printf("2th element: %d\n", *((int*)(getNth(intlist, 2))->value));
     printf("5th element: %d\n", *((int*)(getNth(intlist, 5))->value));

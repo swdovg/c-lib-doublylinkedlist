@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 #include "doublylinkedlist.h"
 
 DblLinkedList* createDblLinkedList(enum type_t listtype) {
@@ -180,8 +181,7 @@ int isListEmpty(DblLinkedList *list) {
 }
 
 Node* findNode(DblLinkedList *list, void *data) {
-    if (list->head== NULL) {
-        printf("ok2\n");
+    if (list->head == NULL) {
         exit(EXIT_FAILURE);
     }
 
@@ -223,8 +223,8 @@ Node* findNode(DblLinkedList *list, void *data) {
     return NULL;
 }
 
-DblLinkedList* filter(DblLinkedList *list, int func(Node* elm)) {
-    if (list->head== NULL) {
+DblLinkedList* filter(DblLinkedList *list, int (*func)(Node *elm)) {
+    if (list->head == NULL) {
         exit(EXIT_FAILURE);
     }
 
@@ -239,6 +239,22 @@ DblLinkedList* filter(DblLinkedList *list, int func(Node* elm)) {
 
     return newList;
 }
+
+DblLinkedList* reverse(DblLinkedList *list) {
+    if (list->head == NULL) {
+        exit(EXIT_FAILURE);
+    }
+
+    DblLinkedList *newList=createDblLinkedList(list->type);
+    Node *tmp=list->head;
+
+    while (tmp) {
+        pushHead(newList, tmp->value);
+        tmp=tmp->next;
+    }
+    return newList;
+}
+
 
 void printDblLinkedList(DblLinkedList *list, void (*fun)(void*)) {
     Node *tmp = list->head;
