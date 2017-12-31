@@ -233,7 +233,7 @@ DblLinkedList* filter(DblLinkedList *list, int (*func)(Node *elm)) {
 
     while (tmp) {
         if (func(tmp)>0)
-            pushHead(newList, tmp);
+            pushTail(newList, tmp->value);
         tmp=tmp->next;
     }
 

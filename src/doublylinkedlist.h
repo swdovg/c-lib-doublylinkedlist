@@ -42,7 +42,7 @@ int isListEmpty(DblLinkedList *list);
 
 Node* findNode(DblLinkedList *list, void *data);
 
-DblLinkedList* filter(DblLinkedList *list, int func(Node *elm));
+DblLinkedList* filter(DblLinkedList *list, int (*func)(Node *elm));
 
 DblLinkedList* reverse(DblLinkedList *list);
 

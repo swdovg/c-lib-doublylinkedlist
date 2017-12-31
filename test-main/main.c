@@ -15,7 +15,12 @@ void printChar(void *value) {
     printf("%c ", *((char*) value));
 }
 
-
+int filterFunc(Node *elm) {
+    if (*((int*)(elm->value)) >= 30)
+        return 1;
+    else
+        return 0;
+}
 
 int main() {
     DblLinkedList *intlist = createDblLinkedList(INT);
@@ -62,14 +67,21 @@ int main() {
     pushTail(intlist, &ie);
     pushTail(intlist, &ik);
     printDblLinkedList(intlist, printInt);
+
     printf("reverse: ");
     printDblLinkedList(reverse(intlist), printInt);
+
+    printf("filter >= 30: ");
+    printDblLinkedList(filter(intlist, filterFunc), printInt);
+
     printf("length: %d\n", intlist->size);
     printf("2th element: %d\n", *((int*)(getNth(intlist, 2))->value));
     printf("5th element: %d\n", *((int*)(getNth(intlist, 5))->value));
+
     printf("find node with 50 value: %d\n", *((int*)(findNode(intlist, &ie))->value));
     if  (findNode(intlist, &ih)==NULL)
         printf("no node with value %d\n", ih);
+
     printf("popHead: %d\n", *((int*)popHead(intlist)));
     printf("popHead: %d\n", *((int*)popHead(intlist)));
     printDblLinkedList(intlist, printInt);
