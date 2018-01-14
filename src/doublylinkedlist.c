@@ -110,6 +110,10 @@ Node* getNth(DblLinkedList *list, size_t index) {
     Node *tmp = list->head;
     size_t i = 0;
 
+    if ( i > index) {
+	exit(EXIT_FAILURE);
+    }
+
     while (tmp && i < index) {
         tmp = tmp->next;
         i++;

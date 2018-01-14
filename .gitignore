@@ -1,4 +1,8 @@
 *.o
+makefile
+*.a
+*.so
 *.swp
 TODO
 test
+test-time/
