@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include "doublylinkedlist.h"
 
-
 void printInt(void *value) {
     printf("%d ", *((int*) value));
 }
@@ -17,9 +16,9 @@ void printChar(void *value) {
 
 int filterFunc(Node *elm) {
     if (*((int*)(elm->value)) >= 30)
-        return 1;
+	return 1;
     else
-        return 0;
+	return 0;
 }
 
 int main() {
@@ -59,7 +58,7 @@ int main() {
     cj = 'g';
     cs = 'r';
 
-    //int list testing
+    //int list and list operations testing
     pushHead(intlist, &ia);
     pushHead(intlist, &ib);
     pushHead(intlist, &ic);
